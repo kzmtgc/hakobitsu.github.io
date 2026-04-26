@@ -314,21 +314,22 @@
   <!-- ── 今日やること概要 ── -->
   <div class="section">
     <div class="section-label"><span class="dot"></span>今日のながれ</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
       <div style="background:var(--teal-soft);border-radius:8px;padding:12px 14px;text-align:center;">
         <div style="font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.08em;margin-bottom:4px;">STEP 1</div>
         <div style="font-size:13px;font-weight:700;">操作に慣れる</div>
-        <div style="font-size:11px;color:var(--ink-light);margin-top:3px;">20分</div>
       </div>
       <div style="background:var(--purple-soft);border-radius:8px;padding:12px 14px;text-align:center;">
         <div style="font-size:11px;font-weight:700;color:var(--purple);letter-spacing:.08em;margin-bottom:4px;">STEP 2</div>
         <div style="font-size:13px;font-weight:700;">アイデアを磨く</div>
-        <div style="font-size:11px;color:var(--ink-light);margin-top:3px;">20分</div>
       </div>
       <div style="background:var(--accent-soft);border-radius:8px;padding:12px 14px;text-align:center;">
         <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:4px;">STEP 3</div>
         <div style="font-size:13px;font-weight:700;">動くものを作る</div>
-        <div style="font-size:11px;color:var(--ink-light);margin-top:3px;">60分</div>
+      </div>
+      <div style="background:#e8f4fd;border-radius:8px;padding:12px 14px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:#1a6fa8;letter-spacing:.08em;margin-bottom:4px;">STEP 4</div>
+        <div style="font-size:13px;font-weight:700;">検証を考える</div>
       </div>
     </div>
   </div>
@@ -372,54 +373,55 @@
     <div class="phase">
       <div class="phase-header">
         <span class="phase-badge h1">Hands-on 1</span>
-        <span class="phase-title">自分のポートフォリオ用キャッチコピーを作る</span>
-        <span class="phase-time">20分</span>
+        <span class="phase-title">制限を加えたレシピサービスのアイデアをAIに出してもらう</span>
       </div>
       <div class="phase-body">
         <div class="goal-box">
           <span class="icon">🎯</span>
-          <span>AIに「役割・状況・制約」を伝えると返答が変わることを体感する。正解はない。とにかく送る。</span>
+          <span>AIに条件を与えると返答が変わることを体感する。アイデアはAIに出してもらってOK。自分は「条件を設計する人」になりましょう。</span>
         </div>
 
         <ul class="steps">
           <li>
             <div class="step-num teal">1</div>
             <div class="step-content">
-              <strong>まず何も考えずに送ってみる</strong>
-              <p>下のプロンプト例をそのままコピーして送ってOKです。</p>
+              <strong>制限つきのアイデアをAIに出してもらう</strong>
+              <p>「レシピサービス」に何らかの制限（ユーザー・シーン・目的など）を加えたアイデアを複数出してもらいます。下のプロンプトをそのまま送ってみてください。</p>
               <div class="prompt-examples" style="margin-top:10px;">
-                <div class="prompt-card">ポートフォリオのキャッチコピーを考えてください。</div>
+                <div class="prompt-card">レシピサービスのアイデアを10個考えてください。<br>それぞれに「誰が」「どんな場面で」「何のために」使うかという制限・条件をつけてください。<br>例：「男性一人暮らし限定」「家族でごはんを作るとき限定」「失敗したくない料理初心者限定」など。</div>
               </div>
-              <p style="margin-top:8px;">→ 何か返ってくるはずです。よくても悪くても、それが出発点。</p>
+              <p style="margin-top:8px;font-size:13px;color:var(--ink-mid);">→ 10案が返ってきます。まず全部読んでみる。</p>
             </div>
           </li>
           <li>
             <div class="step-num teal">2</div>
             <div class="step-content">
-              <strong>自分の情報を加えて送り直す</strong>
-              <p>以下を参考に、自分に合わせて書き換えて送ってみてください。</p>
+              <strong>気に入ったものを「育てる」</strong>
+              <p>10案の中で「これは面白い」と思ったものを1つ選んで、深掘りしてもらいます。</p>
               <div class="prompt-examples" style="margin-top:10px;">
-                <div class="prompt-card">私は〇〇大学でグラフィックデザインを学んでいる4年生です。<br>作品のテーマは「日常の見えないルールを可視化すること」で、<br>主にタイポグラフィと写真を組み合わせた作品を作っています。<br><br>就活用ポートフォリオのキャッチコピーを3案考えてください。<br>読む相手はデザイン会社の採用担当者です。</div>
+                <div class="prompt-card">3番が面白いと思いました。<br>この「〇〇限定レシピサービス」について、もう少し具体的な機能やUI上の工夫を教えてください。</div>
               </div>
             </div>
           </li>
           <li>
             <div class="step-num teal">3</div>
             <div class="step-content">
-              <strong>気に入ったものを「育てる」</strong>
-              <p>3案の中で一番近いものに対して、追加で指示してみましょう。</p>
+              <strong>自分の言葉で条件を変えて再生成する</strong>
+              <p>気に入らなければ、自分で条件を書き換えて投げ直してみましょう。</p>
               <div class="prompt-examples" style="margin-top:10px;">
-                <div class="prompt-card">2番が近いですが、もう少しシャープな印象にしてください。<br>また、英語バージョンも作ってみてください。</div>
+                <div class="prompt-card">「高齢者が孫に料理を教えるとき」に特化したレシピサービスのアイデアを考えてください。<br>どんな機能があると良いですか？</div>
               </div>
+              <p style="margin-top:8px;font-size:13px;color:var(--ink-mid);">→ 条件を変えるだけで全然違うサービスになります。それがこのワークの発見です。</p>
             </div>
           </li>
         </ul>
 
         <div class="tips">
-          <div style="font-size:11px;font-weight:700;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;">うまくいかないときのヒント</div>
-          <div class="tip"><span class="tip-icon">💡</span><span>返答がぼんやりしているときは「具体的に」「箇条書きで」など形式の指定を追加してみる</span></div>
-          <div class="tip"><span class="tip-icon">💡</span><span>「もっと感情的に」「もっと論理的に」など<strong>トーン</strong>を指定するのも効果的</span></div>
-          <div class="tip"><span class="tip-icon">💡</span><span>気に入らなければ「全部やり直してください」と送るだけでOK</span></div>
+          <div style="font-size:11px;font-weight:700;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;">条件の考え方ヒント（5W1H）</div>
+          <div class="tip"><span class="tip-icon">💡</span><span><strong>Who（誰が）</strong>　男性限定・子育て中の親・料理が苦手な人・プロの料理人…</span></div>
+          <div class="tip"><span class="tip-icon">💡</span><span><strong>When（いつ）</strong>　深夜限定・年に一度のイベント・毎朝5分で…</span></div>
+          <div class="tip"><span class="tip-icon">💡</span><span><strong>Where（どこで）</strong>　キャンプ場・職場の給湯室・一人暮らしの狭いキッチン…</span></div>
+          <div class="tip"><span class="tip-icon">💡</span><span><strong>Why（なぜ）</strong>　誰かに感謝を伝えるため・健康管理のため・食費を節約するため…</span></div>
         </div>
       </div>
     </div>
@@ -432,23 +434,22 @@
     <div class="phase">
       <div class="phase-header">
         <span class="phase-badge h2">Hands-on 2</span>
-        <span class="phase-title">デジタルサービスのコンセプトをAIと壁打ちする</span>
-        <span class="phase-time">20分</span>
+        <span class="phase-title">レシピサービスのコンセプトをAIと壁打ちする</span>
       </div>
       <div class="phase-body">
         <div class="goal-box">
           <span class="icon">🎯</span>
-          <span>Step 3の制作に向けて「誰のための・何を解決する・どんなUIの」サービスかを言語化する。AIを「批評家」として使う練習。</span>
+          <span>今回のテーマは<strong>「レシピサービス」</strong>に限定します。テーマを絞ることでAIとの対話に集中しやすくなります。「誰のための・何を解決する・どんなUIの」レシピサービスかを言語化して、Step 3の制作につなげましょう。</span>
         </div>
 
         <ul class="steps">
           <li>
             <div class="step-num purple">1</div>
             <div class="step-content">
-              <strong>ざっくりしたアイデアを投げる</strong>
-              <p>完璧じゃなくてOK。思いついたことをそのまま書く。</p>
+              <strong>自分なりの「レシピサービス」のアイデアを投げる</strong>
+              <p>「レシピ」に関するサービスなら何でもOK。既存のサービスと違う点を意識して書いてみましょう。</p>
               <div class="prompt-examples" style="margin-top:10px;">
-                <div class="prompt-card purple-l">美術系の学生が制作した作品をSNSより落ち着いた雰囲気で<br>共有できるサービスを作りたいです。<br>どんな機能があると良いですか？</div>
+                <div class="prompt-card purple-l">レシピサービスを作りたいです。<br>既存のクックパッドやDelishKitchenとは違う、<br>自分だけのレシピを育てていく感覚のサービスを考えています。<br>どんな機能があると良いですか？</div>
               </div>
             </div>
           </li>
@@ -466,34 +467,39 @@
             <div class="step-num purple">3</div>
             <div class="step-content">
               <strong>コンセプトを1文にまとめる</strong>
-              <p>Step 3に向けて、自分のサービスを一言で言えるようにしておきます。</p>
+              <p>Step 3に向けて、自分のレシピサービスを一言で言えるようにしておきます。</p>
               <div class="prompt-examples" style="margin-top:10px;">
-                <div class="prompt-card purple-l">ここまでの議論を踏まえて、このサービスのコンセプトを<br>「〇〇のための、〇〇できるサービス」という形式で1文にまとめてください。</div>
+                <div class="prompt-card purple-l">ここまでの議論を踏まえて、このサービスのコンセプトを<br>「〇〇のための、〇〇できるレシピサービス」という形式で1文にまとめてください。</div>
               </div>
             </div>
           </li>
         </ul>
 
-        <div style="margin-top:16px;">
-          <div style="font-size:11px;font-weight:700;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">アイデアが思いつかない人向け：お題サンプル</div>
+        <div style="margin-top:16px;background:var(--purple-soft);border-radius:8px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--purple);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">レシピサービスの切り口サンプル（迷ったらここから選んでOK）</div>
           <div class="themes-grid">
             <div class="theme-card">
-              <div class="theme-name">📚 制作記録アプリ</div>
-              <div class="theme-desc">作品ができるまでのプロセスを記録・共有する</div>
+              <div class="theme-name">🍳 失敗を記録する</div>
+              <div class="theme-desc">うまくいかなかった料理とその理由を残すサービス</div>
             </div>
             <div class="theme-card">
-              <div class="theme-name">🎨 色彩メモ帳</div>
-              <div class="theme-desc">日常で見つけた色をカメラで記録して保存する</div>
+              <div class="theme-name">💌 誰かのために作る</div>
+              <div class="theme-desc">特定の相手を思い浮かべながら作るレシピを記録するサービス</div>
             </div>
             <div class="theme-card">
-              <div class="theme-name">🔍 展覧会マップ</div>
-              <div class="theme-desc">近くで開催中の展示を地図で見つけられる</div>
+              <div class="theme-name">📔 作る気になれなかった日も残す</div>
+              <div class="theme-desc">料理できなかった日も含めて、台所との関係を記録するジャーナル</div>
             </div>
             <div class="theme-card">
-              <div class="theme-name">✍️ スケッチ日記</div>
-              <div class="theme-desc">日々のドローイングに一言コメントをつけて残す</div>
+              <div class="theme-name">🎲 強制的に今日の料理が決まる</div>
+              <div class="theme-desc">選ぶ自由を手放して「これを作りなさい」と指示がくるサービス</div>
             </div>
           </div>
+        </div>
+
+        <div style="margin-top:14px;border:1px dashed var(--purple);border-radius:8px;padding:12px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--purple);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;">早く終わった人へ</div>
+          <p style="font-size:13px;color:var(--ink-mid);">レシピサービスが完成したら、自分が本当に作りたいテーマで同じフローを試してみましょう。Step 2からやり直してOKです。</p>
         </div>
       </div>
     </div>
@@ -507,12 +513,11 @@
       <div class="phase-header">
         <span class="phase-badge make">Make</span>
         <span class="phase-title">ArtifactsでUIを生成・改善する</span>
-        <span class="phase-time">60分</span>
       </div>
       <div class="phase-body">
         <div class="goal-box">
           <span class="icon">🎯</span>
-          <span>「コードを書かずに、動くUIを作る」。完成度より<strong>「自分が指示してものが画面に現れる体験」</strong>を大切にする。</span>
+          <span>「コードを書かずに、動くUIを作る」。完成度より<strong>「自分が指示してものが画面に現れる体験」</strong>を大切にする。最後にHTMLファイルとして書き出してGoogle Classroomに提出します。</span>
         </div>
 
         <ul class="steps">
@@ -520,10 +525,11 @@
             <div class="step-num red">1</div>
             <div class="step-content">
               <strong>最初の画面を生成する</strong>
-              <p>Step 2でまとめたコンセプト1文を使って、まず1画面を作ります。</p>
+              <p>Step 2でまとめたコンセプト1文を使って、まず1画面を作ります。<br>プロンプトの最後に必ず<strong>「HTMLファイルとして作ってください」</strong>と入れてください。</p>
               <div class="prompt-examples" style="margin-top:10px;">
-                <div class="prompt-card red-l">美術系学生のための作品記録アプリのトップ画面を作ってください。<br><br>・写真を大きく見せるギャラリービュー<br>・作品名、制作日、使用素材を記録できるカード形式<br>・落ち着いたダークトーンのデザイン<br><br>Artifactsとして動くHTMLで作ってください。</div>
+                <div class="prompt-card red-l">家庭の味を記録・継承するためのレシピサービスのトップ画面を作ってください。<br><br>・レシピをカード形式で一覧表示する<br>・料理名、作った人、メモを記録できる<br>・温かみのある、手書きノートのような雰囲気のデザイン<br><br>HTMLファイルとして作ってください。</div>
               </div>
+              <p style="margin-top:8px;font-size:13px;color:var(--ink-mid);">→ 画面右側にプレビューが表示されたらOKです。</p>
             </div>
           </li>
           <li>
@@ -532,18 +538,18 @@
               <strong>デザインを指示で改善する</strong>
               <p>出てきたUIに対して、デザイナーとして意見を出していきます。</p>
               <div class="prompt-examples" style="margin-top:10px;">
-                <div class="prompt-card red-l">カードの余白がもう少し欲しいです。<br>また、フォントをもっと細めのセリフ体に変えてください。<br>全体的に展覧会のパンフレットのような雰囲気にしたいです。</div>
+                <div class="prompt-card red-l">カードの余白がもう少し欲しいです。<br>また、フォントをもっと手書きっぽい書体に変えてください。<br>全体的に古いレシピ帳のような雰囲気にしたいです。</div>
               </div>
-              <div class="prompt-card red-l" style="margin-top:8px;">ボタンを押したときに、もう少し動きをつけてください。<br>ページ遷移のアニメーションもあると良いです。</div>
+              <div class="prompt-card red-l" style="margin-top:8px;">ボタンを押したときに、もう少し動きをつけてください。<br>カードをタップしたらレシピの詳細が見られるようにしてください。</div>
             </div>
           </li>
           <li>
             <div class="step-num red">3</div>
             <div class="step-content">
               <strong>2画面目以降に挑戦する（余裕があれば）</strong>
-              <p>詳細ページや入力フォームなど、サービスの流れを作ってみましょう。</p>
+              <p>レシピ詳細ページや新規登録フォームなど、サービスの流れを作ってみましょう。</p>
               <div class="prompt-examples" style="margin-top:10px;">
-                <div class="prompt-card red-l">作品をタップしたときに表示される詳細ページを追加してください。<br>画像を全画面で見られるモーダル表示にしてください。</div>
+                <div class="prompt-card red-l">カードをタップしたときに表示されるレシピ詳細ページを追加してください。<br>材料リスト・作り方の手順・作った人のメモが見られるようにしてください。</div>
               </div>
             </div>
           </li>
@@ -555,6 +561,63 @@
           <div class="tip"><span class="tip-icon">🔧</span><span>「全体のデザインを統一感のある色使いに整えてください」→ バラバラになったとき</span></div>
           <div class="tip"><span class="tip-icon">🔧</span><span>「このサービスに必要な画面を全部リストアップしてください」→ 何を作れば良いかわからなくなったとき</span></div>
           <div class="tip"><span class="tip-icon">🔧</span><span>「スマホで見やすいレイアウトに調整してください」→ PCサイズになってしまっているとき</span></div>
+          <div class="tip"><span class="tip-icon">🔧</span><span>「これまでの内容をすべて1つのHTMLファイルにまとめてください」→ 提出前に全画面をまとめたいとき</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── STEP 4 ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot" style="background:#1a6fa8;"></span>Step 4　検証を考える</div>
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge" style="background:#e8f4fd;color:#1a6fa8;">Verify</span>
+        <span class="phase-title">作ったプロトタイプをどう検証するかAIと考える</span>
+      </div>
+      <div class="phase-body">
+        <div class="goal-box">
+          <span class="icon">🎯</span>
+          <span>作って終わりにしない。「このプロトタイプで何を確認したいか」「誰に触ってもらえば一番わかるか」をAIと壁打ちして、検証の仮説を1文で書く。</span>
+        </div>
+
+        <ul class="steps">
+          <li>
+            <div class="step-num" style="background:#1a6fa8;">1</div>
+            <div class="step-content">
+              <strong>自分でプロトタイプを触ってみる</strong>
+              <p>作ったHTMLを実際に操作してみてください。「ここが使いにくい」「ここは伝わる」を感じながら触ります。AIへの質問はまだしなくてOKです。</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num" style="background:#1a6fa8;">2</div>
+            <div class="step-content">
+              <strong>AIに検証の相談をする</strong>
+              <p>触ってみた感想を伝えながら、「誰に・何を・どうやって確認するか」を一緒に考えてもらいます。</p>
+              <div class="prompt-examples" style="margin-top:10px;">
+                <div class="prompt-card" style="border-left-color:#1a6fa8;">私は「高齢者が孫に料理を教えるとき」に特化したレシピサービスのプロトタイプを作りました。<br>触ってみると、レシピの登録画面が少し複雑に感じました。<br><br>このプロトタイプで何を検証すべきでしょうか？<br>誰に触ってもらえば、一番有効なフィードバックが得られますか？</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num" style="background:#1a6fa8;">3</div>
+            <div class="step-content">
+              <strong>検証仮説を1文でまとめる</strong>
+              <p>AIとの議論を踏まえて、自分の言葉で書いてみます。</p>
+              <div class="prompt-examples" style="margin-top:10px;">
+                <div class="prompt-card" style="border-left-color:#1a6fa8;">ここまでの議論を踏まえて、「誰に・何を・どうやって確認するか」を1文にまとめてください。</div>
+              </div>
+              <p style="margin-top:8px;font-size:13px;color:var(--ink-mid);">→ この1文をGoogle Classroomのコメント欄に、コンセプト1文と一緒に記入してください。</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="tips">
+          <div style="font-size:11px;font-weight:700;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;">検証を考えるときのヒント</div>
+          <div class="tip"><span class="tip-icon">💡</span><span>「自分と同じ目線の人」より「実際のユーザーに近い人」に触ってもらうほど発見が多い</span></div>
+          <div class="tip"><span class="tip-icon">💡</span><span>「かっこいいと思う？」より「どこで迷った？」のほうが有効な質問</span></div>
+          <div class="tip"><span class="tip-icon">💡</span><span>検証したいことが複数あるときは「一番不安なこと」を1つに絞る</span></div>
         </div>
       </div>
     </div>
@@ -563,14 +626,15 @@
 
   <!-- ── 最後に提出するもの ── -->
   <div class="section">
-    <div class="section-label"><span class="dot"></span>最後に共有するもの</div>
+    <div class="section-label"><span class="dot"></span>最後に提出するもの</div>
     <div class="submit-box">
-      <h3>発表の準備（5分）</h3>
+      <h3>Google Classroomに提出（授業終了前）</h3>
       <ul class="submit-items">
-        <li><span class="check-box"></span><span>作ったArtifactsの画面をスクリーンショットまたはそのまま画面共有できる状態にする</span></li>
-        <li><span class="check-box"></span><span>サービスのコンセプト1文を言えるようにしておく</span></li>
-        <li><span class="check-box"></span><span>「一番うまくいったプロンプト」「一番困ったこと」を1つずつ思い出しておく</span></li>
+        <li><span class="check-box"></span><span>Claudeとのチャット画面で、作ったHTMLの上にある<strong>「ダウンロード」ボタン</strong>を押してHTMLファイルを保存する</span></li>
+        <li><span class="check-box"></span><span>保存したHTMLファイルをGoogle Classroomの課題欄に添付して提出する</span></li>
+        <li><span class="check-box"></span><span>コメント欄に<strong>コンセプト1文</strong>（「〇〇のための、〇〇できるレシピサービス」）と<strong>検証仮説1文</strong>（「誰に・何を・どうやって確認するか」）を記入する</span></li>
       </ul>
+      <p style="font-size:13px;color:var(--ink-mid);margin-top:12px;">完成度は問いません。途中でも提出してください。「どこまでやったか」より「どんなことを試みたか」を見ます。</p>
     </div>
   </div>
 
@@ -580,8 +644,12 @@
     <div class="section-label"><span class="dot"></span>困ったときは</div>
     <div class="help-grid">
       <div class="help-card">
-        <div class="q">Q. Artifactsが出てこない</div>
-        <div class="a">プロンプトの最後に「Artifactsとして作ってください」または「動くHTMLで作ってください」と明示してみてください。</div>
+        <div class="q">Q. HTMLが出てこない</div>
+        <div class="a">プロンプトの最後に「HTMLファイルとして作ってください」と明示してみてください。「Artifactsとして」でも同じ結果になります。</div>
+      </div>
+      <div class="help-card">
+        <div class="q">Q. ダウンロードボタンが見つからない</div>
+        <div class="a">Claudeの返答の右上にあるプレビュー画面の右上隅に「↓」またはダウンロードアイコンがあります。見当たらない場合は講師に声をかけてください。</div>
       </div>
       <div class="help-card">
         <div class="q">Q. 英語で返ってきた</div>
@@ -590,10 +658,6 @@
       <div class="help-card">
         <div class="q">Q. 何度直しても変な方向に行く</div>
         <div class="a">「最初からやり直してください。今度は〇〇に気をつけて作ってください」と、リセットするプロンプトを送りましょう。</div>
-      </div>
-      <div class="help-card">
-        <div class="q">Q. 何を作れば良いかわからない</div>
-        <div class="a">Step 2のお題サンプルから選んでOK。アイデアを出す時間ではなく「AIと作る体験」が目的なので、シンプルなお題でも十分です。</div>
       </div>
     </div>
   </div>
