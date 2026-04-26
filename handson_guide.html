@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ハンズオン指示書 — AIと一緒にデジタルサービスを作る</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+  :root {
+    --ink: #1a1814;
+    --ink-mid: #4a4740;
+    --ink-light: #8a8780;
+    --paper: #f7f5f0;
+    --paper-warm: #ede9e0;
+    --accent: #c0392b;
+    --accent-soft: #f0e8e6;
+    --teal: #0f6e56;
+    --teal-soft: #e1f5ee;
+    --purple: #534ab7;
+    --purple-soft: #eeedfe;
+    --border: #d4d0c8;
+    --serif: 'Noto Serif JP', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  /* ── ヘッダー ── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 36px 40px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border: 2px solid rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: 40px;
+    width: 120px; height: 120px;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  header h1 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ── 大枠レイアウト ── */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 20px 60px; }
+
+  /* ── セクション共通 ── */
+  .section { margin-top: 40px; }
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 12px;
+  }
+  .section-label .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--ink-light);
+  }
+
+  /* ── フェーズカード ── */
+  .phase {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: white;
+  }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .phase-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .phase-badge.h1 { background: var(--teal-soft); color: var(--teal); }
+  .phase-badge.h2 { background: var(--purple-soft); color: var(--purple); }
+  .phase-badge.make { background: var(--accent-soft); color: var(--accent); }
+
+  .phase-title {
+    font-size: 15px;
+    font-weight: 700;
+    flex: 1;
+  }
+  .phase-time {
+    font-size: 12px;
+    color: var(--ink-light);
+    white-space: nowrap;
+  }
+  .phase-body { padding: 18px 20px; }
+
+  /* ── ゴールボックス ── */
+  .goal-box {
+    background: var(--paper-warm);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .goal-box .icon { flex-shrink: 0; font-size: 16px; margin-top: 2px; }
+
+  /* ── ステップリスト ── */
+  .steps { list-style: none; }
+  .steps li {
+    display: flex;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .steps li:last-child { border-bottom: none; }
+  .step-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-num.teal { background: var(--teal); }
+  .step-num.purple { background: var(--purple); }
+  .step-num.red { background: var(--accent); }
+  .step-content { flex: 1; }
+  .step-content strong { font-weight: 700; }
+  .step-content p { font-size: 14px; color: var(--ink-mid); margin-top: 3px; }
+
+  /* ── プロンプト例 ── */
+  .prompt-examples { margin-top: 14px; }
+  .prompt-examples .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .prompt-card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+    font-family: var(--serif);
+  }
+  .prompt-card.purple-l { border-left-color: var(--purple); }
+  .prompt-card.red-l { border-left-color: var(--accent); }
+
+  /* ── ヒント ── */
+  .tips {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .tip {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--ink-mid);
+    align-items: flex-start;
+  }
+  .tip-icon { flex-shrink: 0; margin-top: 1px; }
+
+  /* ── プロトタイプお題 ── */
+  .themes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  @media (max-width: 480px) { .themes-grid { grid-template-columns: 1fr; } }
+  .theme-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .theme-card:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .theme-card .theme-name { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+  .theme-card .theme-desc { font-size: 12px; color: var(--ink-light); }
+
+  /* ── 提出ボックス ── */
+  .submit-box {
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-top: 20px;
+  }
+  .submit-box h3 {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .submit-items { list-style: none; }
+  .submit-items li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--border);
+    align-items: center;
+  }
+  .submit-items li:last-child { border-bottom: none; }
+  .check-box {
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--ink-light);
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  /* ── 困ったときカード ── */
+  .help-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  @media (max-width: 480px) { .help-grid { grid-template-columns: 1fr; } }
+  .help-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .help-card .q { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 5px; }
+  .help-card .a { font-size: 12.5px; color: var(--ink-mid); line-height: 1.6; }
+
+  /* ── フッター ── */
+  footer {
+    margin-top: 48px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    font-size: 12px;
+    color: var(--ink-light);
+    text-align: center;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container" style="padding-top:0;padding-bottom:0;">
+    <p class="header-eyebrow">Hands-on Guide</p>
+    <h1>AIと一緒にデジタルサービスを作る</h1>
+    <p class="header-sub">本日のハンズオン指示書 ── スマホ・PCどちらでもOK</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ── 今日やること概要 ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot"></span>今日のながれ</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div style="background:var(--teal-soft);border-radius:8px;padding:12px 14px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.08em;margin-bottom:4px;">STEP 1</div>
+        <div style="font-size:13px;font-weight:700;">操作に慣れる</div>
+        <div style="font-size:11px;color:var(--ink-light);margin-top:3px;">20分</div>
+      </div>
+      <div style="background:var(--purple-soft);border-radius:8px;padding:12px 14px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--purple);letter-spacing:.08em;margin-bottom:4px;">STEP 2</div>
+        <div style="font-size:13px;font-weight:700;">アイデアを磨く</div>
+        <div style="font-size:11px;color:var(--ink-light);margin-top:3px;">20分</div>
+      </div>
+      <div style="background:var(--accent-soft);border-radius:8px;padding:12px 14px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:4px;">STEP 3</div>
+        <div style="font-size:13px;font-weight:700;">動くものを作る</div>
+        <div style="font-size:11px;color:var(--ink-light);margin-top:3px;">60分</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 事前準備 ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot"></span>始める前に</div>
+    <div class="phase">
+      <div class="phase-body">
+        <ul class="steps">
+          <li>
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>claude.ai にアクセスする</strong>
+              <p>スマホのブラウザかPCで <code style="background:var(--paper);padding:1px 6px;border-radius:4px;font-size:13px;">claude.ai</code> を開いてください。</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>アカウントを作る or ログインする</strong>
+              <p>メールアドレスがあれば無料で使えます。すでにアカウントがある人はそのままログインしてください。</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>新しいチャットを開く</strong>
+              <p>左上の「New chat」または鉛筆マークをタップして、空の入力欄が出たらOKです。</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── STEP 1 ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot" style="background:var(--teal);"></span>Step 1　操作に慣れる</div>
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge h1">Hands-on 1</span>
+        <span class="phase-title">自分のポートフォリオ用キャッチコピーを作る</span>
+        <span class="phase-time">20分</span>
+      </div>
+      <div class="phase-body">
+        <div class="goal-box">
+          <span class="icon">🎯</span>
+          <span>AIに「役割・状況・制約」を伝えると返答が変わることを体感する。正解はない。とにかく送る。</span>
+        </div>
+
+        <ul class="steps">
+          <li>
+            <div class="step-num teal">1</div>
+            <div class="step-content">
+              <strong>まず何も考えずに送ってみる</strong>
+              <p>下のプロンプト例をそのままコピーして送ってOKです。</p>
+              <div class="prompt-examples" style="margin-top:10px;">
+                <div class="prompt-card">ポートフォリオのキャッチコピーを考えてください。</div>
+              </div>
+              <p style="margin-top:8px;">→ 何か返ってくるはずです。よくても悪くても、それが出発点。</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num teal">2</div>
+            <div class="step-content">
+              <strong>自分の情報を加えて送り直す</strong>
+              <p>以下を参考に、自分に合わせて書き換えて送ってみてください。</p>
+              <div class="prompt-examples" style="margin-top:10px;">
+                <div class="prompt-card">私は〇〇大学でグラフィックデザインを学んでいる4年生です。<br>作品のテーマは「日常の見えないルールを可視化すること」で、<br>主にタイポグラフィと写真を組み合わせた作品を作っています。<br><br>就活用ポートフォリオのキャッチコピーを3案考えてください。<br>読む相手はデザイン会社の採用担当者です。</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num teal">3</div>
+            <div class="step-content">
+              <strong>気に入ったものを「育てる」</strong>
+              <p>3案の中で一番近いものに対して、追加で指示してみましょう。</p>
+              <div class="prompt-examples" style="margin-top:10px;">
+                <div class="prompt-card">2番が近いですが、もう少しシャープな印象にしてください。<br>また、英語バージョンも作ってみてください。</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="tips">
+          <div style="font-size:11px;font-weight:700;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;">うまくいかないときのヒント</div>
+          <div class="tip"><span class="tip-icon">💡</span><span>返答がぼんやりしているときは「具体的に」「箇条書きで」など形式の指定を追加してみる</span></div>
+          <div class="tip"><span class="tip-icon">💡</span><span>「もっと感情的に」「もっと論理的に」など<strong>トーン</strong>を指定するのも効果的</span></div>
+          <div class="tip"><span class="tip-icon">💡</span><span>気に入らなければ「全部やり直してください」と送るだけでOK</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── STEP 2 ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot" style="background:var(--purple);"></span>Step 2　アイデアを磨く</div>
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge h2">Hands-on 2</span>
+        <span class="phase-title">デジタルサービスのコンセプトをAIと壁打ちする</span>
+        <span class="phase-time">20分</span>
+      </div>
+      <div class="phase-body">
+        <div class="goal-box">
+          <span class="icon">🎯</span>
+          <span>Step 3の制作に向けて「誰のための・何を解決する・どんなUIの」サービスかを言語化する。AIを「批評家」として使う練習。</span>
+        </div>
+
+        <ul class="steps">
+          <li>
+            <div class="step-num purple">1</div>
+            <div class="step-content">
+              <strong>ざっくりしたアイデアを投げる</strong>
+              <p>完璧じゃなくてOK。思いついたことをそのまま書く。</p>
+              <div class="prompt-examples" style="margin-top:10px;">
+                <div class="prompt-card purple-l">美術系の学生が制作した作品をSNSより落ち着いた雰囲気で<br>共有できるサービスを作りたいです。<br>どんな機能があると良いですか？</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num purple">2</div>
+            <div class="step-content">
+              <strong>批評してもらう</strong>
+              <p>AIに「あえて弱点を指摘してもらう」のが大事なポイントです。</p>
+              <div class="prompt-examples" style="margin-top:10px;">
+                <div class="prompt-card purple-l">このアイデアの弱点や、既存サービスとの差別化が難しい点を<br>正直に教えてください。</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num purple">3</div>
+            <div class="step-content">
+              <strong>コンセプトを1文にまとめる</strong>
+              <p>Step 3に向けて、自分のサービスを一言で言えるようにしておきます。</p>
+              <div class="prompt-examples" style="margin-top:10px;">
+                <div class="prompt-card purple-l">ここまでの議論を踏まえて、このサービスのコンセプトを<br>「〇〇のための、〇〇できるサービス」という形式で1文にまとめてください。</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div style="margin-top:16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">アイデアが思いつかない人向け：お題サンプル</div>
+          <div class="themes-grid">
+            <div class="theme-card">
+              <div class="theme-name">📚 制作記録アプリ</div>
+              <div class="theme-desc">作品ができるまでのプロセスを記録・共有する</div>
+            </div>
+            <div class="theme-card">
+              <div class="theme-name">🎨 色彩メモ帳</div>
+              <div class="theme-desc">日常で見つけた色をカメラで記録して保存する</div>
+            </div>
+            <div class="theme-card">
+              <div class="theme-name">🔍 展覧会マップ</div>
+              <div class="theme-desc">近くで開催中の展示を地図で見つけられる</div>
+            </div>
+            <div class="theme-card">
+              <div class="theme-name">✍️ スケッチ日記</div>
+              <div class="theme-desc">日々のドローイングに一言コメントをつけて残す</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── STEP 3 ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot" style="background:var(--accent);"></span>Step 3　動くプロトタイプを作る</div>
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge make">Make</span>
+        <span class="phase-title">ArtifactsでUIを生成・改善する</span>
+        <span class="phase-time">60分</span>
+      </div>
+      <div class="phase-body">
+        <div class="goal-box">
+          <span class="icon">🎯</span>
+          <span>「コードを書かずに、動くUIを作る」。完成度より<strong>「自分が指示してものが画面に現れる体験」</strong>を大切にする。</span>
+        </div>
+
+        <ul class="steps">
+          <li>
+            <div class="step-num red">1</div>
+            <div class="step-content">
+              <strong>最初の画面を生成する</strong>
+              <p>Step 2でまとめたコンセプト1文を使って、まず1画面を作ります。</p>
+              <div class="prompt-examples" style="margin-top:10px;">
+                <div class="prompt-card red-l">美術系学生のための作品記録アプリのトップ画面を作ってください。<br><br>・写真を大きく見せるギャラリービュー<br>・作品名、制作日、使用素材を記録できるカード形式<br>・落ち着いたダークトーンのデザイン<br><br>Artifactsとして動くHTMLで作ってください。</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num red">2</div>
+            <div class="step-content">
+              <strong>デザインを指示で改善する</strong>
+              <p>出てきたUIに対して、デザイナーとして意見を出していきます。</p>
+              <div class="prompt-examples" style="margin-top:10px;">
+                <div class="prompt-card red-l">カードの余白がもう少し欲しいです。<br>また、フォントをもっと細めのセリフ体に変えてください。<br>全体的に展覧会のパンフレットのような雰囲気にしたいです。</div>
+              </div>
+              <div class="prompt-card red-l" style="margin-top:8px;">ボタンを押したときに、もう少し動きをつけてください。<br>ページ遷移のアニメーションもあると良いです。</div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num red">3</div>
+            <div class="step-content">
+              <strong>2画面目以降に挑戦する（余裕があれば）</strong>
+              <p>詳細ページや入力フォームなど、サービスの流れを作ってみましょう。</p>
+              <div class="prompt-examples" style="margin-top:10px;">
+                <div class="prompt-card red-l">作品をタップしたときに表示される詳細ページを追加してください。<br>画像を全画面で見られるモーダル表示にしてください。</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="tips" style="margin-top:16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;">制作中に詰まったときのプロンプト</div>
+          <div class="tip"><span class="tip-icon">🔧</span><span>「さっきの状態に戻してください」→ 変更を取り消したいとき</span></div>
+          <div class="tip"><span class="tip-icon">🔧</span><span>「全体のデザインを統一感のある色使いに整えてください」→ バラバラになったとき</span></div>
+          <div class="tip"><span class="tip-icon">🔧</span><span>「このサービスに必要な画面を全部リストアップしてください」→ 何を作れば良いかわからなくなったとき</span></div>
+          <div class="tip"><span class="tip-icon">🔧</span><span>「スマホで見やすいレイアウトに調整してください」→ PCサイズになってしまっているとき</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── 最後に提出するもの ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot"></span>最後に共有するもの</div>
+    <div class="submit-box">
+      <h3>発表の準備（5分）</h3>
+      <ul class="submit-items">
+        <li><span class="check-box"></span><span>作ったArtifactsの画面をスクリーンショットまたはそのまま画面共有できる状態にする</span></li>
+        <li><span class="check-box"></span><span>サービスのコンセプト1文を言えるようにしておく</span></li>
+        <li><span class="check-box"></span><span>「一番うまくいったプロンプト」「一番困ったこと」を1つずつ思い出しておく</span></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ── 困ったとき ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot"></span>困ったときは</div>
+    <div class="help-grid">
+      <div class="help-card">
+        <div class="q">Q. Artifactsが出てこない</div>
+        <div class="a">プロンプトの最後に「Artifactsとして作ってください」または「動くHTMLで作ってください」と明示してみてください。</div>
+      </div>
+      <div class="help-card">
+        <div class="q">Q. 英語で返ってきた</div>
+        <div class="a">「日本語で答えてください」と送るだけでOKです。最初のメッセージに「日本語で」と入れておくとずっと日本語になります。</div>
+      </div>
+      <div class="help-card">
+        <div class="q">Q. 何度直しても変な方向に行く</div>
+        <div class="a">「最初からやり直してください。今度は〇〇に気をつけて作ってください」と、リセットするプロンプトを送りましょう。</div>
+      </div>
+      <div class="help-card">
+        <div class="q">Q. 何を作れば良いかわからない</div>
+        <div class="a">Step 2のお題サンプルから選んでOK。アイデアを出す時間ではなく「AIと作る体験」が目的なので、シンプルなお題でも十分です。</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container" style="padding-top:0;padding-bottom:0;">
+    このハンズオン指示書はワークショップ当日の補助資料です。<br>
+    操作に行き詰まったらいつでも講師に声をかけてください。
+  </div>
+</footer>
+
+</body>
+</html>
