@@ -512,45 +512,51 @@
     <div class="phase">
       <div class="phase-header">
         <span class="phase-badge make">Make</span>
-        <span class="phase-title">ArtifactsでUIを生成・改善する</span>
+        <span class="phase-title">スマホアプリ風のUIをHTMLで作る</span>
       </div>
       <div class="phase-body">
         <div class="goal-box">
           <span class="icon">🎯</span>
-          <span>「コードを書かずに、動くUIを作る」。完成度より<strong>「自分が指示してものが画面に現れる体験」</strong>を大切にする。最後にHTMLファイルとして書き出してGoogle Classroomに提出します。</span>
+          <span>「コードを書かずに、スマホアプリのような動くUIを作る」。完成度より<strong>「自分が指示してアプリ画面が現れる体験」</strong>を大切にする。最後にHTMLファイルとして書き出してGoogle Classroomに提出します。</span>
+        </div>
+
+        <div style="background:var(--paper-warm);border-radius:8px;padding:12px 16px;margin-bottom:16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;">スマホアプリUIを作るときの基本の型</div>
+          <p style="font-size:13px;color:var(--ink-mid);margin:0;line-height:1.7;">アプリはふつう「トップ画面（一覧）」→「詳細画面」→「入力・記録画面」という流れで構成されます。まずトップ画面から作り始めて、徐々に画面を増やしていきましょう。画面の切り替えやタップの動きも、Claudeへの指示で追加できます。</p>
         </div>
 
         <ul class="steps">
           <li>
             <div class="step-num red">1</div>
             <div class="step-content">
-              <strong>最初の画面を生成する</strong>
-              <p>Step 2でまとめたコンセプト1文を使って、まず1画面を作ります。<br>プロンプトの最後に必ず<strong>「HTMLファイルとして作ってください」</strong>と入れてください。</p>
+              <strong>トップ画面（ホーム）を生成する</strong>
+              <p>Step 2でまとめたコンセプト1文を使って、アプリのトップ画面から作ります。<br>プロンプトの最後に必ず<strong>「HTMLファイルとして作ってください」</strong>と入れてください。</p>
               <div class="prompt-examples" style="margin-top:10px;">
-                <div class="prompt-card red-l">家庭の味を記録・継承するためのレシピサービスのトップ画面を作ってください。<br><br>・レシピをカード形式で一覧表示する<br>・料理名、作った人、メモを記録できる<br>・温かみのある、手書きノートのような雰囲気のデザイン<br><br>HTMLファイルとして作ってください。</div>
+                <div class="prompt-card red-l">料理×セルフケアジャーナリングアプリのトップ画面（ホーム）を作ってください。<br><br>・スマートフォンアプリのUI（幅375px程度、縦長）<br>・過去の食事を1日ごとにカード形式で一覧表示する<br>・「作った日」「作れなかった日」をバッジで区別する<br>・画面下部にナビゲーションバー（ホーム・記録・設定）<br>・Notionのようなシンプルなノート風デザイン<br><br>HTMLファイルとして作ってください。</div>
               </div>
-              <p style="margin-top:8px;font-size:13px;color:var(--ink-mid);">→ 画面右側にプレビューが表示されたらOKです。</p>
+              <p style="margin-top:8px;font-size:13px;color:var(--ink-mid);">→ スマホ画面サイズのUIが表示されたらOKです。</p>
             </div>
           </li>
           <li>
             <div class="step-num red">2</div>
             <div class="step-content">
-              <strong>デザインを指示で改善する</strong>
-              <p>出てきたUIに対して、デザイナーとして意見を出していきます。</p>
+              <strong>デザインと動きを指示で改善する</strong>
+              <p>出てきたUIに対して、アプリのデザイナーとして意見を出していきます。</p>
               <div class="prompt-examples" style="margin-top:10px;">
-                <div class="prompt-card red-l">カードの余白がもう少し欲しいです。<br>また、フォントをもっと手書きっぽい書体に変えてください。<br>全体的に古いレシピ帳のような雰囲気にしたいです。</div>
+                <div class="prompt-card red-l">カードの余白をもう少し広くしてください。<br>「作れなかった日」のカードは背景色を少しグレーがかった色にしてください。<br>全体的にもっとシンプルで落ち着いた雰囲気にしたいです。</div>
               </div>
-              <div class="prompt-card red-l" style="margin-top:8px;">ボタンを押したときに、もう少し動きをつけてください。<br>カードをタップしたらレシピの詳細が見られるようにしてください。</div>
+              <div class="prompt-card red-l" style="margin-top:8px;">カードをタップしたときに詳細が見られるようにしてください。<br>画面遷移のアニメーションも少しつけてください。</div>
             </div>
           </li>
           <li>
             <div class="step-num red">3</div>
             <div class="step-content">
               <strong>2画面目以降に挑戦する（余裕があれば）</strong>
-              <p>レシピ詳細ページや新規登録フォームなど、サービスの流れを作ってみましょう。</p>
+              <p>詳細画面や記録入力画面など、アプリの流れを作っていきましょう。</p>
               <div class="prompt-examples" style="margin-top:10px;">
-                <div class="prompt-card red-l">カードをタップしたときに表示されるレシピ詳細ページを追加してください。<br>材料リスト・作り方の手順・作った人のメモが見られるようにしてください。</div>
+                <div class="prompt-card red-l">カードをタップしたときに表示される詳細画面を追加してください。<br>料理名・日付・気分メモが大きく表示され、左上に戻るボタンがあるアプリらしいレイアウトにしてください。</div>
               </div>
+              <div class="prompt-card red-l" style="margin-top:8px;">右下の「＋」ボタンをタップすると記録入力画面が開くようにしてください。<br>「今日は作った」「作れなかった」を選択できるようにしてください。</div>
             </div>
           </li>
         </ul>
@@ -558,9 +564,9 @@
         <div class="tips" style="margin-top:16px;">
           <div style="font-size:11px;font-weight:700;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;">制作中に詰まったときのプロンプト</div>
           <div class="tip"><span class="tip-icon">🔧</span><span>「さっきの状態に戻してください」→ 変更を取り消したいとき</span></div>
+          <div class="tip"><span class="tip-icon">🔧</span><span>「スマホアプリらしいデザインに整えてください。幅は375pxで」→ PCレイアウトになってしまったとき</span></div>
+          <div class="tip"><span class="tip-icon">🔧</span><span>「このアプリに必要な画面を全部リストアップしてください」→ 何を作れば良いかわからなくなったとき</span></div>
           <div class="tip"><span class="tip-icon">🔧</span><span>「全体のデザインを統一感のある色使いに整えてください」→ バラバラになったとき</span></div>
-          <div class="tip"><span class="tip-icon">🔧</span><span>「このサービスに必要な画面を全部リストアップしてください」→ 何を作れば良いかわからなくなったとき</span></div>
-          <div class="tip"><span class="tip-icon">🔧</span><span>「スマホで見やすいレイアウトに調整してください」→ PCサイズになってしまっているとき</span></div>
           <div class="tip"><span class="tip-icon">🔧</span><span>「これまでの内容をすべて1つのHTMLファイルにまとめてください」→ 提出前に全画面をまとめたいとき</span></div>
         </div>
       </div>
